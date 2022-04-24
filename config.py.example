@@ -1,0 +1,9 @@
+# Fill in the values below and rename the file to config.py
+
+class Config(object):
+    # Postgres credentials
+    DB_HOST = "Hostname"
+    DB_PORT = "5432"
+    DB_NAME = "Name of database"
+    DB_USERNAME = "Database user"
+    DB_PASSWORD = "Password of database user"
