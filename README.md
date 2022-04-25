@@ -10,4 +10,5 @@
 5. Visitez `http://localhost:7832` ou [cliquez ici](http://localhost:7832) dans votre navigateur pour utiliser l'application
 
 ## Informations supplémentaires
-L'application nécessite Python 3
+- L'application nécessite Python 3
+- Les utilisateurs ne sont pas sécurisés dans la base de données, n'utilisez donc pas vos vrais mot de passes
