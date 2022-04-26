@@ -8,6 +8,7 @@ app.config.from_object("config.Config")
 
 loggedInUser = None
 
+# Needed role for access can be specified with user_type
 def login_required(user_type = None):
     def decorator(func):
         @wraps(func)
@@ -44,8 +45,8 @@ def teardown_db(exception):
 def index():
     # TODO: Redirect to proper user location based on role
     conn = get_db_connection()
-    cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
-    cur.execute('SELECT * FROM utilisateurs;')
+    cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) # Fetch data as dictionnary instead of list
+    cur.execute('SELECT * FROM utilisateurs;') # Just a test query
     users = cur.fetchall()
     cur.close()
     return render_template('index.html', users=users)
@@ -56,14 +57,14 @@ def login():
         username = request.form['username']
         password = request.form['password']
         conn = get_db_connection()
-        cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+        cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) # Fetch data as dictionnary instead of list
         cur.execute("SELECT * FROM utilisateurs WHERE username='{}' AND password='{}';".format(username, password))
-        user = cur.fetchone()
+        fetched_user = cur.fetchone()
         cur.close()
         
-        if user:
+        if fetched_user:
             global loggedInUser
-            loggedInUser = user
+            loggedInUser = fetched_user
             return redirect(url_for('index'))
         else:
             flash("L'utilisateur n'a pas été trouvé. Assurez-vous d'avoir bien entré les détails de connection.")
