@@ -15,7 +15,7 @@ def login_required(user_type = None):
         def wrapper(*args, **kwargs):
             if not loggedInUser:
                 return redirect(url_for('login'))
-            elif user_type and not loggedInUser['role'] == user_type:
+            elif user_type and not loggedInUser['type_utilisateur'] == user_type:
                 return abort(403)
             return func(*args, **kwargs)
         return wrapper
@@ -44,12 +44,15 @@ def teardown_db(exception):
 @login_required()
 def index():
     # TODO: Redirect to proper user location based on role
-    conn = get_db_connection()
-    cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) # Fetch data as dictionnary instead of list
-    cur.execute('SELECT * FROM utilisateurs;') # Just a test query
-    users = cur.fetchall()
-    cur.close()
-    return render_template('index.html', users=users)
+    #conn = get_db_connection()
+    #cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) # Fetch data as dictionnary instead of list
+    #cur.execute('SELECT * FROM utilisateurs;') # Just a test query
+    #users = cur.fetchall()
+    #cur.close()
+    if loggedInUser['type_utilisateur'] == 'receptionist':
+        return render_template('receptionist/index.html')
+    else:
+        return abort(404)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -76,6 +79,25 @@ def logout():
     global loggedInUser
     loggedInUser = None
     return redirect(url_for('login'))
+
+# Receptionist
+@app.route('/patient/search', methods=['GET', 'POST'])
+@login_required()
+def patient_search():
+    found_patients = None
+    
+    if request.method == 'POST':
+        name_query = request.form['q']
+        if name_query is None: name_query = ""
+        
+        conn = get_db_connection()
+        cur = conn.cursor()
+        cur.execute("SELECT patient_id, nom FROM patients WHERE UPPER(nom) LIKE '%" + name_query.upper() + "%'")
+        found_patients = cur.fetchall()
+        print(found_patients, flush=True)
+        cur.close()
+    
+    return render_template('receptionist/search.html', results = found_patients)
 
 if __name__ == '__main__':
     app.run(port=7832, debug=True)

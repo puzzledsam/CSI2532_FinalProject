@@ -23,17 +23,17 @@ cur.execute('INSERT INTO utilisateurs (username, password, type_utilisateur)'
                 'VALUES (%s, %s, %s)',
                 ('testuser',
                 'password',
-                'admin')
+                'receptionist')
                 )
 
 cur.execute('DROP TABLE IF EXISTS employes;')
 cur.execute('CREATE TABLE employes (employe_id serial PRIMARY KEY,'
-            'nom varchar NOT NULL,'
-            'adresse varchar(200) NOT NULL,'
-            'role varchar NOT NULL,'
-            'type_employe varchar NOT NULL,'
-            'SSN integer NOT NULL,'
-            'salaire decimal(8,2) NOT NULL);')
+                'nom varchar NOT NULL,'
+                'adresse varchar(200) NOT NULL,'
+                'role varchar NOT NULL,'
+                'type_employe varchar NOT NULL,'
+                'SSN integer NOT NULL,'
+                'salaire decimal(8,2) NOT NULL);')
 
 cur.execute('DROP TABLE IF EXISTS patients;')
 cur.execute('CREATE TABLE patients (patient_id serial PRIMARY KEY,'
@@ -43,8 +43,19 @@ cur.execute('CREATE TABLE patients (patient_id serial PRIMARY KEY,'
                 'SSN integer NOT NULL,'
                 'email varchar NOT NULL,'
                 'date_naissance date NOT NULL,'
-                'telephone integer NOT NULL,'
+                'telephone bigint NOT NULL,'
                 'addresse varchar(200) NOT NULL);'
+                )
+
+cur.execute('INSERT INTO patients (nom, sexe, SSN, email, date_naissance, telephone, addresse)'
+                'VALUES (%s, %s, %s, %s, %s, %s, %s)',
+                ('John Doe',
+                'Homme',
+                123456789,
+                'email@email.com',
+                '1999-07-23',
+                6136136134,
+                '123 rue Chemin')
                 )
 
 cur.execute('DROP TABLE IF EXISTS succursales;')

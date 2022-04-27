@@ -1,0 +1,23 @@
+{% extends 'receptionist/base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Recherche de patient {% endblock %}</h1>
+
+    <form method="post">
+        <label>Nom: </label>
+        <input type="text" name="q">
+        <button type="submit">Rechercher</button>
+    </form>
+
+    {% if results is not none %}
+        <div class="search_results">
+            {% if not results|length %}
+                <p>Aucun résultat</p>
+            {% endif %}
+            {% for patient in results %}
+                <a href="#">{{ patient[1] }}</a>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+{% endblock %}

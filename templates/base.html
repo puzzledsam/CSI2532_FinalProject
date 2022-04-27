@@ -7,8 +7,8 @@
 <body>
     <nav>
         <a href="{{ url_for('index') }}">Accueil</a>
-        <a href="#">Page 2</a>
-        <a href="{{ url_for('logout') }}">Fermer la session</a>
+        {% block navbar %} {% endblock %}
+        <a href="{{ url_for('logout') }}" style="text-align: right; float: right;">Fermer la session</a>
     </nav>
     <hr>
     <div class="content">
