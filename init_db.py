@@ -26,6 +26,20 @@ cur.execute('INSERT INTO utilisateurs (username, password, type_utilisateur)'
                 'receptionist')
                 )
 
+cur.execute('INSERT INTO utilisateurs (username, password, type_utilisateur)'
+                'VALUES (%s, %s, %s)',
+                ('testdentist',
+                'password',
+                'dentist')
+                )
+
+cur.execute('INSERT INTO utilisateurs (username, password, type_utilisateur)'
+                'VALUES (%s, %s, %s)',
+                ('johndoe',
+                'password',
+                'patient')
+                )
+
 cur.execute('DROP TABLE IF EXISTS employes;')
 cur.execute('CREATE TABLE employes (employe_id serial PRIMARY KEY,'
                 'nom varchar NOT NULL,'

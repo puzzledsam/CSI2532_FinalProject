@@ -1,4 +1,4 @@
-{% extends 'receptionist/base.html' %}
+{% extends 'dentist/base.html' %}
 
 {% block content %}
     <h1>{% block title %} Recherche de patient {% endblock %}</h1>
@@ -15,7 +15,7 @@
                 <p>Aucun résultat</p>
             {% endif %}
             {% for patient in results %}
-                <a href="{{ url_for('receptionist_modify_patient', patient_id=patient[0]) }}">{{ patient[1] }}</a><br>
+                <a href="#">{{ patient[1] }}</a><br>
             {% endfor %}
         </div>
     {% endif %}

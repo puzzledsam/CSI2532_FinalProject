@@ -1,0 +1,14 @@
+{% extends 'patient/base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Accueil {% endblock %}</h1>
+    <p>Accueil pour patients</p>
+    <div class="prochainRendezVous">
+        <h3>Prochain rendez-vous</h3>
+        <p>Votre prochain rendez-vous est le ...</p>
+    </div>
+    <div class="antecedents">
+        <h3>Antécédents médicaux</h3>
+        <p>Vos procédures antérieures ...</p>
+    </div>
+{% endblock %}

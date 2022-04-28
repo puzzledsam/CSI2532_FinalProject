@@ -1,0 +1,58 @@
+{% extends 'receptionist/base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Détails du patient {% endblock %} - {{ patient['nom'] }}</h1>
+    <p>ID du patient: {{ patient['patient_id'] }}</p>
+    {% with messages = get_flashed_messages() %}
+        <p>
+        {% if messages %}
+            <div class="notification">
+                <b>{{ messages[0] }}</b>
+            </div>
+        {% endif %}
+        </p>
+    {% endwith %}
+    <hr>
+    <details>
+        <summary>
+            <span style="outline-style: solid;" onmouseover="this.style.color='blue';" onmouseout="this.style.color='';">Modifier/voir les détails du patient</span>
+        </summary>
+        <br>
+        <form method="post">
+            <label>Nom: </label>
+            <input required type="text" name="patientName" value="{{ patient['nom'] }}">
+            <br>
+            <label>Sexe: </label>
+            <select name="patientSex" value="{{ patient['sexe'] }}">
+                <option value="Homme" {% if patient['sexe'] == "Homme" %} selected {% endif %}>Homme</option>
+                <option value="Femme" {% if patient['sexe'] == "Femme" %} selected {% endif %}>Femme</option>
+            </select>
+            <br>
+            <label>SSN: </label>
+            <input required type="number" name="patientSSN" value="{{ patient['ssn'] }}">
+            <br>
+            <label>E-mail: </label>
+            <input required type="email" name="patientEmail" value="{{ patient['email'] }}">
+            <br>
+            <label>Date de naissance: </label>
+            <input required type="date" name="patientDOB" value="{{ patient['date_naissance'] }}">
+            <br>
+            <label>Numéro de téléphone: </label>
+            <input required type="number" name="patientPhone" value="{{ patient['telephone'] }}">
+            <br>
+            <label>Adresse: </label>
+            <input required type="text" name="patientAddress" value="{{ patient['addresse'] }}">
+            <br><br>
+            <button required type="submit">Soumettre les modifications</button>
+        </form>
+    </details>
+    <hr>
+    <details>
+        <summary>
+            <span style="outline-style: solid;" onmouseover="this.style.color='blue';" onmouseout="this.style.color='';">Fixer un rendez-vous</span>
+        </summary>
+        <br>
+        <p>SYSTÈME DE RENDEZ-VOUS À TERMINER</p>
+    </details>
+    <hr>
+{% endblock %}

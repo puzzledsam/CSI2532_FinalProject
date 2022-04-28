@@ -1,0 +1,33 @@
+{% extends 'receptionist/base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Ajouter patient {% endblock %}</h1>
+    <form method="post">
+        <label>Nom: </label>
+        <input required type="text" name="patientName">
+        <br>
+        <label>Sexe: </label>
+        <select name="patientSex">
+            <option value="" selected disabled hidden>Choisir une option</option>
+            <option value="Homme">Homme</option>
+            <option value="Femme">Femme</option>
+        </select>
+        <br>
+        <label>SSN: </label>
+        <input required type="number" name="patientSSN" >
+        <br>
+        <label>E-mail: </label>
+        <input required type="email" name="patientEmail">
+        <br>
+        <label>Date de naissance: </label>
+        <input required type="date" name="patientDOB">
+        <br>
+        <label>Numéro de téléphone: </label>
+        <input required type="number" name="patientPhone">
+        <br>
+        <label>Adresse: </label>
+        <input required type="text" name="patientAddress">
+        <br><br>
+        <button type="submit">Soumettre</button>
+    </form>
+{% endblock %}
