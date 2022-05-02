@@ -33,10 +33,10 @@
 
         function addProcedureField() {
             var dropdown = document.createElement("select");
+            dropdown.name = "appointmentProcedures";
             const procedureOptions = ["Nettoyage", "Blanchissement", "Plombage", "Broches"];
             for (var i = 0; i < procedureOptions.length; i++) {
                 var option = document.createElement("option");
-                option.name = "appointmentProcedures";
                 option.value = i;
                 option.text = procedureOptions[i];
                 dropdown.appendChild(option);

@@ -396,7 +396,7 @@ def receptionist_book_appointment(patient_id):
         print("Returned id: {}".format(returned_id), flush=True)
         
         for procedure in appointment_procedures:
-            _ = add_procedure(procedure, returned_id, patient_id, appointment_date)
+            add_procedure(procedure, returned_id, patient_id, appointment_date)
             print("Added procedure {}".format(procedure), flush=True)
         
         return redirect(url_for('receptionist_modify_patient', patient_id=patient_id))
