@@ -17,6 +17,7 @@
 ## Informations supplémentaires
 - Les utilisateurs ne sont pas sécurisés dans la base de données, n'utilisez donc pas vos vrais mot de passes
 - Les réceptionnistes sont associées à leur succursales et peuvent seulement fixer des rendez-vous dans leur propre succursale
+- La plupart des champs ne sont pas validés
 
 ## Comptes pré-définis
 ### Patient
