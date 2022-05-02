@@ -2,10 +2,10 @@
 
 {% block content %}
     <h1>{% block title %} Recherche de patient {% endblock %}</h1>
-
+    <p>Laissez le champ vide et puis recherchez pour lister tous les patients</p>
     <form method="post">
         <label>Nom: </label>
-        <input required type="text" name="q">
+        <input type="text" name="q">
         <button type="submit">Rechercher</button>
     </form>
     <br>

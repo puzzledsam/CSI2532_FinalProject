@@ -1,0 +1,13 @@
+{% extends 'patient/base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Succursales {% endblock %}</h1>
+    <p>Nos succursales:</p>
+    <div class="succursales">
+    <ul>
+        {% for succursale in succursales %}
+            <li><a href="{{ url_for('get_succursale_details', succursale_name=succursale['ville'], succursale_id=succursale['succursale_id']) }}">{{ succursale['ville'] }}</a></li>
+        {% endfor %}
+    </ul>
+    </div>
+{% endblock %}

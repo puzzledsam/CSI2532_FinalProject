@@ -23,7 +23,7 @@
             <input required type="text" name="patientName" value="{{ patient['nom'] }}">
             <br>
             <label>Sexe: </label>
-            <select name="patientSex" value="{{ patient['sexe'] }}">
+            <select required name="patientSex" value="{{ patient['sexe'] }}">
                 <option value="Homme" {% if patient['sexe'] == "Homme" %} selected {% endif %}>Homme</option>
                 <option value="Femme" {% if patient['sexe'] == "Femme" %} selected {% endif %}>Femme</option>
             </select>
@@ -49,10 +49,17 @@
     <hr>
     <details>
         <summary>
-            <span style="outline-style: solid;" onmouseover="this.style.color='blue';" onmouseout="this.style.color='';">Fixer un rendez-vous</span>
+            <span style="outline-style: solid;" onmouseover="this.style.color='blue';" onmouseout="this.style.color='';">Voir/fixer les rendez-vous</span>
         </summary>
         <br>
-        <p>SYSTÈME DE RENDEZ-VOUS À TERMINER</p>
+        <p><b>Rendez-vous existants:</b></p>
+        {% if appointments|length < 1 %}
+            <p>Pas de rendez-vous à venir</p>
+        {% endif %}
+        {% for appointment in appointments %}
+        <p>{{ appointment['date_rdv'] }}</p>
+        {% endfor %}
+        <a href="{{ url_for('receptionist_book_appointment', patient_id=patient['patient_id']) }}">Fixer un rendez-vous</a>
     </details>
     <hr>
 {% endblock %}

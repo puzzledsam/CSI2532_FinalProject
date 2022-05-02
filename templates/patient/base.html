@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
 {% block navbar %}
-    <a href="#">Antécédents</a>
-    <a href="#">Rendez-vous</a>
+    <a href="{{ url_for('patient_index') }}">Information</a>
+    <a href="{{ url_for('show_succursales') }}">Succursales</a>
 {% endblock %}

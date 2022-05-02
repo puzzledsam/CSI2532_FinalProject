@@ -1,0 +1,53 @@
+{% extends 'receptionist/base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Fixer un rendez-vous {% endblock %}</h1>
+    <form method="post">
+        <label>Dentiste/Hygiéniste: </label>
+        <select required name="appointmentDentist">
+            <option value="" selected disabled hidden>Choisir une option</option>
+            {% for dentiste in dentistes %}
+                <option value="{{ dentiste['employe_id'] }}">{{ dentiste['nom'] }}, {{ dentiste['role'] }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label>Succursale: </label>
+        {{ succursale['ville'] }}
+        <br>
+        <label>Date du rendez-vous: </label>
+        <input required type="date" name="appointmentDate">
+        <br>
+        <label>Temps du rendez-vous: </label>
+        <input required type="time" name="appointmentTime">
+        <br>
+        <label>Procédures:</label>
+        <button type="button" onclick="addProcedureField()">+</button>
+        <button type="button" onclick="removeProcedureField()">-</button>
+        <div id="procedureFields"></div>
+        <br><br>
+        <button type="submit">Fixer le rendez-vous</button>
+    </form>
+    <script>
+        var procedureFields = document.getElementById("procedureFields");
+        addProcedureField(); // Add the first field automatically
+
+        function addProcedureField() {
+            var dropdown = document.createElement("select");
+            const procedureOptions = ["Nettoyage", "Blanchissement", "Plombage", "Broches"];
+            for (var i = 0; i < procedureOptions.length; i++) {
+                var option = document.createElement("option");
+                option.name = "appointmentProcedures";
+                option.value = i;
+                option.text = procedureOptions[i];
+                dropdown.appendChild(option);
+            }
+            procedureFields.appendChild(dropdown);
+            procedureFields.appendChild(document.createElement("br"));
+        }
+
+        function removeProcedureField() {
+            procedureFields.removeChild(procedureFields.lastChild);
+            procedureFields.removeChild(procedureFields.lastChild);
+        }
+    </script>
+{% endblock %}

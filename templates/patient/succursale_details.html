@@ -1,0 +1,26 @@
+{% extends 'patient/base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Succursale {% endblock %} - {{ succursale_name }}</h1>
+    <p><b>Nos dentistes:</b></p>
+    <div class="dentistes">
+        {% if dentistes|length < 1 %}
+            <p>Pas de dentistes</p>
+        {% else %}
+        <ul>
+            {% for dentiste in dentistes %}
+                <li>{{ dentiste['nom'] }}, {{dentiste['role']}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    <p><b>Procédures disponibles:</b></p>
+    <div class="procedures">
+        <ul>
+            <li>Nettoyage</li>
+            <li>Blanchissement</li>
+            <li>Plombage</li>
+            <li>Broches</li>
+        </ul>
+    </div>
+{% endblock %}

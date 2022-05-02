@@ -1,0 +1,31 @@
+{% extends 'receptionist/base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Ajouter employé {% endblock %}</h1>
+    <form method="post">
+        <label>Nom: </label>
+        <input required type="text" name="employeName">
+        <br>
+        <label>Adresse: </label>
+        <input required type="text" name="employeAddress">
+        <br>
+        <label>SSN: </label>
+        <input required type="number" name="employeSSN" >
+        <br>
+        <label>Salaire: </label>
+        <input required type="number" min="1" step="any" name="employeSalary">
+        <br>
+        <label>Type d'employé: </label>
+        <select required name="employeType">
+            <option value="" selected disabled hidden>Choisir une option</option>
+            <option value="receptionist">Réceptionniste</option>
+            <option value="hygienist">Hygiéniste</option>
+            <option value="dentist">Dentiste</option>
+        </select>
+        <br>
+        <label>Username du compte de l'employé: </label>
+        <input required type="text" name="employeUsername">
+        <br><br>
+        <button type="submit">Soumettre</button>
+    </form>
+{% endblock %}

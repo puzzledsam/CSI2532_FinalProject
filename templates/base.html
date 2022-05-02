@@ -6,9 +6,15 @@
 </head>
 <body>
     <nav>
-        <a href="{{ url_for('index') }}">Accueil</a>
-        {% block navbar %} {% endblock %}
+        En tant que:
+        <a href="{{ url_for('patient_index') }}">Patient</a>
+        {% if loggedInUser['is_receptionist'] %} <a href="{{ url_for('receptionist_index') }}">Receptioniste</a> {% endif %}
+        {% if loggedInUser['is_dentist'] %} <a href="{{ url_for('dentist_index') }}">Dentiste/Hygiéniste</a> {% endif %}
         <a href="{{ url_for('logout') }}" style="text-align: right; float: right;">Fermer la session</a>
+    </nav>
+    <hr>
+    <nav>
+        {% block navbar %} {% endblock %}
     </nav>
     <hr>
     <div class="content">

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block navbar %}
-    <a href="{{ url_for('receptionist_patient_add') }}">Ajouter un patient</a>
     <a href="{{ url_for('receptionist_patient_search') }}">Chercher un patient</a>
+    <a href="{{ url_for('receptionist_patient_add') }}">Ajouter un patient</a>
+    <a href="{{ url_for('receptionist_employee_add') }}">Ajouter un employé</a>
 {% endblock %}

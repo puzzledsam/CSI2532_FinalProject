@@ -1,0 +1,21 @@
+{% extends 'dentist/base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Détails du patient {% endblock %} - {{ patient['nom'] }}</h1>
+    <p>ID du patient: {{ patient['patient_id'] }}</p>
+    <hr>
+    <div class="patientDetails">
+        <p><b>Nom:</b> {{ patient['nom'] }}</p>
+        <p><b>Sexe:</b> {{ patient['sexe'] }}</p>
+        <p><b>SSN:</b> {{ patient['ssn'] }}</p>
+        <p><b>E-mail:</b> {{ patient['email'] }}</p>
+        <p><b>Date de naissance:</b> {{ patient['date_naissance'] }}</p>
+        <p><b>Numéro de téléphone:</b> {{ patient['telephone'] }}</p>
+        <p><b>Adresse:</b> {{ patient['addresse'] }}</p>
+    </div>
+    <hr>
+    <h3>Antécédents médicaux</h3>
+    {% for antecedent in antecedents %}
+        <p>{{ antecedent['date'] }}: {{ antecedent['type_procedure'] }}</p>
+    {% endfor %}
+{% endblock %}

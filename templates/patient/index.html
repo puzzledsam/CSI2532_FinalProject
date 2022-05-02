@@ -4,11 +4,30 @@
     <h1>{% block title %} Accueil {% endblock %}</h1>
     <p>Accueil pour patients</p>
     <div class="prochainRendezVous">
-        <h3>Prochain rendez-vous</h3>
-        <p>Votre prochain rendez-vous est le ...</p>
+        <h3>Prochains rendez-vous</h3>
+        {% if appointments|length < 1 %}
+            <p>Pas de rendez-vous à venir</p>
+        {% endif %}
+        {% for appointment in appointments %}
+        <p>{{ appointment['date_rdv'] }} avec
+            {% for dentiste in dentistes %}
+                {% if dentiste['employe_id'] == appointment['dentist_id'] %}
+                    {{ dentiste['nom'] }}
+                {% endif %}
+            {% endfor %}
+             à la succursale
+            {% for succursale in succursales %}
+                {% if succursale['succursale_id'] == appointment['succursale_id'] %}
+                    {{ succursale['ville'] }}
+                {% endif %}
+            {% endfor %}
+        </p>
+        {% endfor %}
     </div>
     <div class="antecedents">
         <h3>Antécédents médicaux</h3>
-        <p>Vos procédures antérieures ...</p>
+        {% for antecedent in antecedents %}
+            <p>{{ antecedent['date'] }}: {{ antecedent['type_procedure'] }}</p>
+        {% endfor %}
     </div>
 {% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Association du profil patient {% endblock %}</h1>
+    <p>Vous n'êtes pas encore un patient, contactez votre réceptionniste pour créer votre profil patient et recevoir votre ID.</p>
+    {% with messages = get_flashed_messages() %}
+        <p>
+        {% if messages %}
+            <div class="notification">
+                <b style="color: red;">{{ messages[0] }}</b>
+            </div>
+        {% endif %}
+        </p>
+    {% endwith %}
+    <form method="POST">
+        <label>ID de patient: </label>
+        <input type="number" name="patientId">
+        <button type="submit">Associer</button>
+    </form>
+{% endblock %}
