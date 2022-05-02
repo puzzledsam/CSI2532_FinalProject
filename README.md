@@ -10,6 +10,7 @@
   - Vous pouvez utiliser votre base de données uOttawa ou une base de données locale
   - Après avoir modifié le fichier, renommez le tout simplement à "config.py"
 3. Exécutez `python init_db.py` pour tester votre connection à la base de données et initialiser les données de l'application
+  - Seulement nécessaire la première fois, sinon vos données seront **effacées et remises aux valeurs par défaut**
 4. Exécutez `python app.py` pour démarrer l'application (elle s'exécutera jusqu'à ce que vous appuyez CTRL + C dans votre terminal)
 5. Visitez `http://localhost:7832` ou [cliquez ici](http://localhost:7832) dans votre navigateur pour utiliser l'application
 
