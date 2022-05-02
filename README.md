@@ -19,13 +19,13 @@
 
 ## Comptes pré-définis
 ### Patient
-Username: johndoe
-Password: password
+- Username: johndoe
+- Password: password
 
 ### Réceptioniste
-Username: testuser
-Password: password
+- Username: testuser
+- Password: password
 
 ### Dentiste/Hygiéniste
-Username: testdentist
-Password: password
+- Username: testdentist
+- Password: password
